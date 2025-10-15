@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koşum Takip Sistemi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card data-section">
+            <h1><i class="fas fa-chart-line"></i> Koşum Takip Sistemi</h1>
+            
+            <div class="form-group">
+                <label for="feature"><i class="fas fa-tag"></i> Feature İsmi</label>
+                <input type="text" id="feature" placeholder="Örnek: Login Test">
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="total"><i class="fas fa-list-ol"></i> Toplam Senaryo</label>
+                    <input type="number" id="total" placeholder="0">
+                </div>
+                
+                <div class="form-group">
+                    <label for="pass"><i class="fas fa-check-circle"></i> Pass</label>
+                    <input type="number" id="pass" placeholder="0">
+                </div>
+                
+                <div class="form-group">
+                    <label for="fail"><i class="fas fa-times-circle"></i> Fail</label>
+                    <input type="number" id="fail" placeholder="0">
+                </div>
+            </div>
+            
+            <button onclick="addData()" class="btn-primary"><i class="fas fa-plus"></i> Ekle</button>
+
+            <button onclick="deleteAllData()" class="btn-secondary2"><i class="fas fa-trash-alt"></i> Tümünü Sil</button>
+
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Toplam</th>
+                            <th>Pass</th>
+                            <th>Fail</th>
+                            <th>İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTable"></tbody>
+                </table>
+            </div>
+            
+            <div class="summary-cards">
+                <div class="summary-card total">
+                    <h3><i class="fas fa-layer-group"></i> Toplam Senaryo</h3>
+                    <p id="totalScenarios">0</p>
+                </div>
+                <div class="summary-card pass">
+                    <h3><i class="fas fa-check"></i> Toplam Pass</h3>
+                    <p id="totalPass">0</p>
+                </div>
+                <div class="summary-card fail">
+                    <h3><i class="fas fa-times"></i> Toplam Fail</h3>
+                    <p id="totalFail">0</p>
+                </div>
+            </div>
+            
+            <div class="file-actions">
+                <button onclick="exportToExcel()" class="btn-secondary"><i class="fas fa-file-excel"></i> Excel'e Aktar</button>
+                <button onclick="importFromExcel()" class="btn-primary"><i class="fas fa-file-import"></i> Excel'den Yükle</button>
+            </div>
+        </div>
+        
+        <div class="card chart-section">
+            <div class="chart-container">
+                <canvas id="pieChart"></canvas>
+            </div>
+            
+            <div class="pass-rate">
+                <h3><i class="fas fa-percentage"></i> Pass Rate</h3>
+                <div class="progress-bar">
+                    <div class="progress" id="passRateBar"></div>
+                    <div class="progress-text" id="passRateText">0%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
